@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+  <title></title>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      font: 12pt "Tahoma";
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 10mm;
+      margin: 10mm auto;
+      border: 1px #d3d3d3 solid;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .subpage {
+      padding: 1cm;
+      border: 5px red solid;
+      height: 257mm;
+      outline: 2cm #ffeaea solid;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        user-select: none;
+      }
+
+      .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+      }
+    }
+
+    html * {
+      color: #000;
+      /* font-family: "Calibri" !important; */
+      font-family: "Times New Roman" !important;
+      font-weight: bold;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body style="font-family: 'Book Antiqua'">
+  <div class="book">
+    <div class="page" style="padding: 10px">
+
+      <div style="border: 1px solid #000;height: 291mm;">
+
+        <div style="display: flex;width:100%;text-align: center;border-bottom: 1px solid #000;margin-bottom: -10px;">
+
+          <div style="width:8%;"></div>
+
+          <div style="width:15%;"><img src='/admission-print/logo.png' style='width: 100%;' />
+          </div>
+
+          <div style="width:69%;text-align: center">
+            <h1 style="letter-spacing: 8px;margin-bottom: 5px;">PEOPLE'S UNIVERSITY</h1>
+            <span style="letter-spacing: 3px;font-size: 14px;">OF MEDICAL & HEALTH SCIENCES FOR WOMEN
+              <br />
+              NAWABSHAH-SHAHEED BENAZIRABAD</span>
+          </div>
+
+          <div style="width:8%;"></div>
+
+        </div>
+
+        <div style="text-align: center;border-bottom: 1px solid #000;padding-bottom: 2px;">
+
+          <h3 style="margin-bottom: -0px;">APPLICATION FORM</h3>
+          <span style="font-style: italic;font-weight: bold;font-size: 14px;">For the Admission in BS-ICT, BS-AT,
+            BS-CVT, BS-MLT Session <span id="YearSession"></span></span>
+
+        </div>
+
+        <div
+          style="text-align: center;justify-content: center;display: flex;border-bottom: 1px solid #000;padding: 10px;">
+
+          <div style="flex-direction: row;justify-content: space-between;display: flex;width: 80%;">
+            <div><span style="font-weight: normal;font-size: 14px;">Application No: <b id="APL_ID_1"></b></span>
+            </div>
+            <div><span style="font-weight: normal;font-size: 14px;">Domicile State: <b id="State"
+                  style="text-transform: uppercase;"></b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">District: <b id="District"
+                  style="text-transform: uppercase;"></b></span> </div>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              CHOICES</div>
+
+            <div style="display: flex;border: 1px solid #000" id="dvChoosePrg">
+
+            </div>
+
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              BASIC INFORMATION
+            </div>
+
+            <div style="width: 100%;display: flex;">
+              <div style="width: 80%;">
+
+                <div
+                  style="flex-direction: row;justify-content: space-between;display: flex;border-bottom: 1px solid #000;padding-top: 8px;padding-bottom: 8px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Candidate Name: <b style="padding-left: 20px;"
+                        id="CANDIDATE_NAME"></b></span>
+                  </div>
+                </div>
+
+                <div
+                  style="flex-direction: row;display: flex;border-bottom: 1px solid #000;padding-top: 8px;padding-bottom: 8px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">CNIC No: <b style="padding-left: 10px;"
+                        id="CNIC"></b></span>
+                  </div>
+                  <div style="margin-left: 80px;"></div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Contact No: <b style="padding-left: 10px;"
+                        id="CONTACT"></b></span>
+                  </div>
+                </div>
+
+                <div
+                  style="flex-direction: row;justify-content: space-between;display: flex;border-bottom: 1px solid #000;padding-top: 8px;padding-bottom: 8px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Father Name: <b style="padding-left: 10px;"
+                        id="FName"></b></span>
+                  </div>
+                </div>
+
+              </div>
+              <div style="width: 20%;text-align: right;margin-top: 20px;height: 115px;">
+                <img id="ProfilePic" src='/admission-print/dummy_profile_2.jpg'
+                  style='width: 80%;height: 100%;object-fit: cover;' />
+              </div>
+
+            </div>
+
+            <div style="width: 100%;display: flex;">
+              <div style="width: 100%;">
+
+                <div
+                  style="flex-direction: row;display: flex;border-bottom: 1px solid #000;padding-top: 0px;padding-bottom: 8px;margin-top: -20px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">CNIC No: <b style="padding-left: 10px;"
+                        id="F_CNIC"></b></span>
+                  </div>
+                  <div style="margin-left: 80px;"></div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Contact No: <b style="padding-left: 10px;"
+                        id="F_Mobile"></b></span>
+                  </div>
+                </div>
+
+                <div
+                  style="flex-direction: row;justify-content: space-between;display: flex;border-bottom: 1px solid #000;padding-top: 8px;padding-bottom: 8px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Surname: <b style="padding-left: 10px;"
+                        id="Cast"></b></span>
+                  </div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Religion: <b style="padding-left: 10px;"
+                        id="Relegion"></b></span>
+                  </div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Gender: <b style="padding-left: 10px;"
+                        id="Gender"></b></span>
+                  </div>
+                </div>
+
+                <div style="padding-top: 10px;padding-bottom: 8px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Postal Address: <b style="padding-left: 10px;"
+                        id="PostalAddress"></b></span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              EDUCATIONAL INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;width: 2%;"> S.No </th>
+                <th style="font-size: 12px;width: 20%;"> Degree </th>
+                <th style="font-size: 12px;width: 20%;"> Board </th>
+                <th style="font-size: 12px;width: 5%;line-height: 16px;"> Passing Year</th>
+                <th style="font-size: 12px;width: 15%;"> Result Date</th>
+                <th style="font-size: 12px;"> Obtained </th>
+                <th style="font-size: 12px;"> Total </th>
+                <th style="font-size: 12px;"> Percentage </th>
+                <th style="font-size: 12px;"> Grade </th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">1.</td>
+                <td style="text-align: center;font-size: 12px;" id="m_Degree"></td>
+                <td style="text-align: center;font-size: 12px;" id="m_Board">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="m_Year">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="m_RDate">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="m_Obt">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="m_Tot">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="m_per">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="m_Grade">No</td>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">2.</td>
+                <td style="text-align: center;font-size: 12px;" id="i_Degree">No</td>
+                <td style="text-align: center;font-size: 12px;" id="i_Board">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="i_Year">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="i_RDate">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="i_Obt">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="i_Tot">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="i_per">Yes</td>
+                <td style="text-align: center;font-size: 12px;" id="i_Grade">Yes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              EMERGENCY INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;">Name</th>
+                <th style="font-size: 12px;">Relation</th>
+                <th style="font-size: 12px;">Contact</th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;" id="Eme_Name"></td>
+                <td style="text-align: center;font-size: 12px;" id="Eme_Relation"></td>
+                <td style="text-align: center;font-size: 12px;" id="Eme_Contact"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              CHALLAN INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;">Challan No</th>
+                <th style="font-size: 12px;">Paid Date</th>
+                <th style="font-size: 12px;">Branch</th>
+                <th style="font-size: 12px;">Amount</th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;" id="APL_ID_2"></td>
+                <td style="text-align: center;font-size: 12px;" id="VouDate"></td>
+                <td style="text-align: center;font-size: 12px;" id="VouBank"></td>
+                <td style="text-align: center;font-size: 12px;" id="feeinfo">0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+
+        <div style="margin: 20px;margin-top: 30px">
+          <div style="display: flex;justify-content: space-between;">
+            <div style="text-align: center;">
+              <div>______________________</div>
+              <div style="font-size: 14px;font-weight: normal">Candidate's Signature</div>
+              <div style="font-size: 14px;" id="CANDIDATE_NAME_"></div>
+              <div style="font-size: 14px;font-weight: normal" id="CNIC_"></div>
+            </div>
+
+            <div style="text-align: center;">
+              <div>______________________</div>
+              <div style="font-size: 14px;font-weight: normal">Father's Signature</div>
+              <div style="font-size: 14px" id="FName_"></div>
+              <div style="font-size: 14px;font-weight: normal" id="F_CNIC_"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-style: italic;margin-left: 20px;" id="PrintDate_1"></div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <!-- 2nd Page -->
+
+    <div class="page" style="padding: 10px">
+      <div style="border: 1px solid #000;height: 291mm;">
+
+
+        <div style="display: flex;width:100%;text-align: center;border-bottom: 1px solid #000;margin-bottom: 0px;">
+
+          <div style="width:8%;"></div>
+
+          <div style="width:15%;"><img src='/admission-print/logo.png' style='width: 100%;' />
+          </div>
+
+          <div style="width:69%;text-align: center">
+            <h1 style="letter-spacing: 8px;margin-bottom: 5px;">PEOPLE'S UNIVERSITY</h1>
+            <span style="letter-spacing: 3px;font-size: 14px;">OF MEDICAL & HEALTH SCIENCES FOR WOMEN
+              <br />
+              NAWABSHAH-SHAHEED BENAZIRABAD</span>
+          </div>
+
+          <div style="width:8%;"></div>
+
+        </div>
+
+        <div
+          style="text-align: center;justify-content: center;display: flex;border-bottom: 1px solid #000;padding: 10px;">
+          <div style="flex-direction: row;justify-content: space-between;display: flex;width: 80%;">
+            <div><span style="font-weight: normal;font-size: 14px;">Application No: <b id="APL_ID_3"></b></span>
+            </div>
+            <div><span style="font-weight: normal;font-size: 14px;">Domicile State: <b id="State_"
+                  style="text-transform: uppercase;"></b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">District: <b id="District_"
+                  style="text-transform: uppercase;"></b></span> </div>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000; padding: 20px;font-size: 20px;text-align: center;">
+          DOCUMENTS CHECK LIST
+        </div>
+
+        <div style="width:100%;margin: 2px;">
+
+          <table style="width: 99.5%;">
+
+            <tr style="line-height: 25px;">
+              <th style="font-size: 12px;width: 10%;">1.</th>
+              <th style="font-size: 11px;width: 80%;text-align: left;padding-left: 5px;">Copy of Processing Fee Challan
+              </th>
+              <th style="font-size: 12px;width: 10%;"><input type="checkbox" /></th>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">2.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Original Application
+                Form</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">3.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Matriculation Certificate (SSC) or O-Level Equivalence Certificate </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">4.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Matriculation Mark Certificate or O-Level Transcript Certificate
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">5.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Matriculation Pakka Certificate</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">6.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Intermediate Certificate (HSC-Pre Medical) or A-Level Equivalence Certificate</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">7.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Intermediate Mark Certificate or A-Level Transcript Certificate</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">8.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                candidate's Domicile</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">9.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                candidate's Permanent Residence Certificate (PRC-Form C)</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">10.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Father's Domicile and PRC</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">11.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Mother's Domicile and Father's Death Certificate from NADRA if Father is not Alive</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">12.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Mother's Domicile and Divorce Certificate if Parents are Divorced</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">13.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                National Identity Card or B-Form (if candidate is below age of 18 years)</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">14.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Father's National Identity Card
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">15.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Four passport size
+                photographs of the candidate with his/her name duly written on the back side of the photographs</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+          </table>
+
+          <!-- <div style="font-size: 14px;text-align: center;border-bottom: 1px solid #000;padding: 5px;">FOR BSC-NURSING
+            (TWO
+            YEARS PROGRAM)</div>
+          <div style="font-size: 13px;font-weight: normal;text-align: center;padding: 3px;">The Minimum Educational
+            Qualification of
+            Candidate for Admission to First Year BSc Nursing course is:
+          </div> -->
+
+          <!-- <table style="width: 99.5%;">
+
+            <tr style="line-height: 25px;">
+              <th style="font-size: 12px;width: 10%;">15.</th>
+              <th style="font-size: 11px;width: 80%;text-align: left;padding-left: 5px;line-height: 20px;">Diploma in
+                General nursing (03)
+                Years with at least 2 nd Division duly verified from concerned Nursing Examination Board.</th>
+              <th style="font-size: 12px;width: 10%;"><input type="checkbox" /></th>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">16.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;line-height: 20px;">
+                Diploma in midwifery or
+                any Post Basic Specialty (01 Year) with at least 2 nd Division duly verified from concerned Nursing
+                Examination Board.
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">17.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Two Year Clinical
+                Experience of Clinical Jobs in any Recognized Hospital.
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">18.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Valid PNC Registration
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">19.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Recent Medical Fitness
+                Certificat</td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 25px;">
+              <td style="text-align: center;font-size: 12px;">20.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;line-height: 20px;">
+                Proficiency in English Speaking, Reading & Writing
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+          </table> -->
+
+          <div style="margin: 20px;margin-top: 40px">
+            <div style="display: flex;justify-content: space-between;">
+              <div style="text-align: center;">
+                <div>______________________</div>
+                <div style="font-size: 14px;font-weight: normal">Candidate's Signature</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-style: italic;margin-left: 20px;" id="PrintDate_2"></div>
+          </div>
+
+          <div style="margin-left: -2px;margin-right: 2px;margin-top: 180px;margin-bottom: 5px;">
+            <div style="background-color: #a9a9a9;color: white;text-align: center;padding: 8px;font-size: 14px;">
+              For any query call: +92-244-930507 or email: admission@pumhs.edu.pk</div>
+          </div>
+
+
+          <div style="text-align: center;padding-top: 0px;">
+            <u>Admission Department</u>
+          </div>
+
+          <div style="text-align: center;font-weight: normal;padding-top: 10px;font-size: 14px;line-height: 20px;">
+            People's University of Medical & Health Sciences for Women, Shaheed Benazirabad, Sindh, Pakistan <br />
+            Tel: +92-244-930507, Fax: +92-244-930263 <br />
+            Website: www.pumhs.edu.pk
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <!--  -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+
+      const paragraphs = document.querySelectorAll('body');
+      // http://localhost:5000
+      // http://121.52.155.34:5000
+      const IP_ADDRESS = "http://172.173.225.115:5000"
+
+      for (const paragraph of paragraphs) {
+        paragraph.addEventListener('mousedown', (event) => {
+          event.preventDefault();
+        });
+      }
+
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'I' && event.ctrlKey && event.shiftKey) {
+          event.preventDefault();
+        }
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+
+
+      GET_VOUCHER_DATA()
+      GET_PROGRAM_CHOISE()
+      GET_USER_DATA()
+      GET_EDU_DATA()
+      // 
+      function GET_VOUCHER_DATA() {
+        const Vou = urlParams.get('Vou');
+        // 121.52.155.34
+        axios
+          .get(IP_ADDRESS + '/ADM_SESSION/getOne/' + Vou)
+          .then((res) => {
+            var a = res.data[0]
+            document.getElementById("YearSession").innerHTML = a.Year
+          })
+          .catch(function (error) {
+            console.log(error)
+            alert("error")
+          })
+      }
+
+      function GET_PROGRAM_CHOISE() {
+        const Vou = urlParams.get('Vou');
+        const Info = urlParams.get('Info');
+
+        const dataToSend = { RegID: Info, SesID: Vou }
+        // console.log(dataToSend);
+        // 121.52.155.34
+        axios
+          .post(IP_ADDRESS + '/ADM_ProgramApplied/getProgram_Choice', dataToSend)
+          .then((res) => {
+            const r = res.data
+            console.log(r);
+            document.getElementById("APL_ID_1").innerHTML = r.APL_ID
+            document.getElementById("APL_ID_2").innerHTML = r.APL_ID
+            document.getElementById("APL_ID_3").innerHTML = r.APL_ID
+            // 
+            document.getElementById("feeinfo").innerHTML = r.VOU_AMOUNT.toLocaleString()
+            document.getElementById("VouDate").innerHTML = moment(r.VOU_PAID_DATE).format("DD/MM/YYYY")
+            document.getElementById("VouBank").innerHTML = r.VOU_BANK
+            // 
+            document.title = "PUMHS ADMISSION | FORM PRINT | " + r.APL_ID;
+            // 
+            let htmlContent = "";
+
+            for (let i = 0; i < r.SelectedDept.length; i++) {
+              htmlContent += `<div style="display: flex;">
+                <div
+                  style="padding-left: 5px;border-right: 1px solid #000;padding-right: 5px;font-size: 12px;padding-top: 2px;">
+                  ${i + 1}</div>
+                <div
+                  style="padding-left: 5px;border-right: 1px solid #000;padding-right: 15px;font-size: 12px;padding-top: 2px;">
+                  ${r.SelectedDept[i].DEPT_NAME}</div>
+              </div>`;
+            }
+
+            const mainHtmlString = htmlContent;
+            document.getElementById("dvChoosePrg").innerHTML = mainHtmlString;
+
+            // 
+          })
+          .catch(function (error) {
+            console.log(error)
+            alert("error")
+          })
+      }
+
+      function GET_EDU_DATA() {
+        const Info = urlParams.get('Info');
+        axios
+          .get(IP_ADDRESS + '/ADM_Education/getEducationData/' + Info)
+          .then((res) => {
+            var mData = res.data.Matric_Info[0]
+            var iData = res.data.Inter_Info[0]
+            // 
+            document.getElementById("m_Degree").innerHTML = mData.M_Degree
+            document.getElementById("m_Board").innerHTML = mData.M_Board
+            document.getElementById("m_Year").innerHTML = mData.M_PassingYear
+            document.getElementById("m_RDate").innerHTML = moment(mData.M_ResultDate).format("DD/MM/YYYY")
+            document.getElementById("m_Obt").innerHTML = mData.M_MarksObt
+            document.getElementById("m_Tot").innerHTML = mData.M_MarksTotal
+            document.getElementById("m_per").innerHTML = mData.M_Percentage
+            document.getElementById("m_Grade").innerHTML = mData.M_Grade
+            // 
+            document.getElementById("i_Degree").innerHTML = iData.I_Degree
+            document.getElementById("i_Board").innerHTML = iData.I_Board
+            document.getElementById("i_Year").innerHTML = iData.I_PassingYear
+            document.getElementById("i_RDate").innerHTML = moment(iData.I_ResultDate).format("DD/MM/YYYY")
+            document.getElementById("i_Obt").innerHTML = iData.I_MarksObt
+            document.getElementById("i_Tot").innerHTML = iData.I_MarksTotal
+            document.getElementById("i_per").innerHTML = iData.I_Percentage
+            document.getElementById("i_Grade").innerHTML = iData.I_Grade
+            // 
+          })
+          .catch(function (error) {
+            console.log(error)
+            alert("error")
+          })
+      }
+
+      function GET_USER_DATA() {
+        const Info = urlParams.get('Info');
+        axios
+          .get(IP_ADDRESS + '/ADM_BasicInfo/getFormData/' + Info)
+          .then((res) => {
+            console.log(res.data);
+            var aData = res.data[0]
+            var dData = aData.uDate[0]
+            // 
+            document.getElementById("CANDIDATE_NAME").innerHTML = aData.CANDIDATE_NAME
+            document.getElementById("CANDIDATE_NAME_").innerHTML = aData.CANDIDATE_NAME
+            document.getElementById("Cast").innerHTML = aData.Cast
+            document.getElementById("Gender").innerHTML = aData.Gender
+            document.getElementById("Relegion").innerHTML = aData.Relegion
+            document.getElementById("FName").innerHTML = aData.FName
+            document.getElementById("FName_").innerHTML = aData.FName
+            document.getElementById("F_CNIC").innerHTML = aData.F_CNIC
+            document.getElementById("F_CNIC_").innerHTML = aData.F_CNIC
+            document.getElementById("F_Mobile").innerHTML = aData.F_Mobile
+            document.getElementById("Eme_Name").innerHTML = aData.Eme_Name
+            document.getElementById("Eme_Relation").innerHTML = aData.Eme_Relation
+            document.getElementById("Eme_Contact").innerHTML = aData.Eme_Contact
+            document.getElementById("PostalAddress").innerHTML = aData.PostalAddress
+            document.getElementById("State").innerHTML = aData.State
+            document.getElementById("State_").innerHTML = aData.State
+            document.getElementById("District").innerHTML = aData.District
+            document.getElementById("District_").innerHTML = aData.District
+            // 
+            document.getElementById("CNIC").innerHTML = dData.CNIC
+            document.getElementById("CNIC_").innerHTML = dData.CNIC
+            document.getElementById("CONTACT").innerHTML = dData.CONTACT
+            // 
+            document.getElementById("PrintDate_1").innerHTML = "Dated: " + moment().format("MMMM DD, YYYY")
+            document.getElementById("PrintDate_2").innerHTML = "Dated: " + moment().format("MMMM DD, YYYY")
+            // 
+            $("#ProfilePic").attr("src", IP_ADDRESS + "/uploads/ADM_Profile/" + dData.CNIC + ".jpg");
+            // 
+          })
+          .catch(function (error) {
+            console.log(error)
+            alert("error")
+          })
+      }
+
+      setTimeout(() => {
+        window.print();
+
+      }, 4000);
+
+
+    </script>
+</body>
+
+</html>

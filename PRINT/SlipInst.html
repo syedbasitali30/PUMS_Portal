@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+  <title></title>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      font: 12pt "Tahoma";
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 10mm;
+      margin: 10mm auto;
+      border: 1px #d3d3d3 solid;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .subpage {
+      padding: 1cm;
+      border: 5px red solid;
+      height: 257mm;
+      outline: 2cm #ffeaea solid;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        user-select: none;
+      }
+
+      .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+      }
+    }
+
+    html * {
+      color: #000;
+      /* font-family: "Calibri" !important; */
+      font-family: "Times New Roman" !important;
+      font-weight: bold;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    .Inst {
+      font-weight: normal;
+      font-size: 14px;
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Barcode+39+Extended+Text&display=swap" rel="stylesheet">
+</head>
+
+<body style="font-family: 'Book Antiqua'">
+  <div class="book">
+    <div class="page" style="padding: 10px">
+
+      <div style="border: 1px solid #000;height: 291mm;">
+
+        <div style="display: flex;width:100%;text-align: center;border-bottom: 1px solid #000;margin-bottom: -10px;">
+
+          <div style="width:4%;"></div>
+
+          <div style="width:15%;"><img src='/admission-print/logo.png' style='width: 100%;' />
+          </div>
+
+          <div style="width:69%;text-align: center">
+            <h1 style="letter-spacing: 8px;margin-bottom: 5px;">PEOPLE'S UNIVERSITY</h1>
+            <span style="letter-spacing: 3px;font-size: 14px;">OF MEDICAL & HEALTH SCIENCES FOR WOMEN
+              <br />
+              NAWABSHAH-SHAHEED BENAZIRABAD</span>
+          </div>
+
+          <div style="width:8%;margin-top: 25px;">
+            <div id="qrcode"></div>
+          </div>
+
+          <div style="width:4%;"></div>
+
+        </div>
+
+        <div style="text-align: center;border-bottom: 1px solid #000;padding-bottom: 2px;">
+
+          <h3 style="margin-bottom: -0px;text-transform: uppercase;">Entry Test instructions</h3>
+          <span style="font-style: italic;font-weight: bold;font-size: 14px;">For the Admission in DPT, PHARM-D, BSPH,
+            BS NURSING Session <span id="YearSession"></span></span>
+
+        </div>
+        <!--  -->
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              GENERAL INSTRUCTIONS</div>
+
+            <ul>
+
+              <li class="Inst">Reach your test centre in time. You should reach atleast 30 minutes before start-time of
+                test</li>
+              <li class="Inst">Bring your Admit Slip and Original National Identity Card (CNIC). Without Admit Slip and
+                CNIC, you
+                will
+                not be allowed to
+                appear in the test.</li>
+              <li class="Inst">In case of unavailability of CNIC, please bring any original document having the
+                candidate's picture
+                for verification</li>
+              <li class="Inst">Mobile phones, calculators or other electronic gadgets are not allowed in exam hall.
+              </li>
+              <li class="Inst">Do not open the Question-book before you are instructed to start the test.</li>
+              <li class="Inst">An attendance-sheet will be provided in hall. Make sure that you have marked your
+                attendance by
+                signing on the answer-sheet</li>
+              <li class="Inst"><b>Correct way of filling the circles for answer on answer sheet:</b><br />
+                The answer-sheet is a computer sensitive paper. Do not fold it. Fill in (shade) the circle for each
+                option correctly. Shading the
+                circle in wrong manner will not receive marks for answer as it is marked by a computer. Here is the
+                correct way of shading the
+                options:</li>
+            </ul>
+
+            <div style="text-align: center;justify-content: center;align-items: center;display: flex;">
+              <div style="width:60%;"><img src='/admission-print/mcq.png'
+                  style='width: 100%;border-width: 1px;border-style: solid;border-radius: 5px;' />
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+        <div style="margin-left: -2px;margin-right: 2px;margin-top: 350px;margin-bottom: 5px;">
+          <div>
+            <div style="font-style: italic;margin-left: 20px;margin-bottom: 10px;" id="PrintDate_2"></div>
+          </div>
+          <div style="background-color: #a9a9a9;color: white;text-align: center;padding: 8px;font-size: 14px;">
+            For any query call: +92-244-930507 or email: admission@pumhs.edu.pk</div>
+        </div>
+
+
+        <div style="text-align: center;padding-top: 0px;">
+          <u>Admission Department</u>
+        </div>
+
+
+
+        <div style="text-align: center;font-weight: normal;padding-top: 10px;font-size: 14px;line-height: 20px;">
+          People's University of Medical & Health Sciences for Women, Shaheed Benazirabad, Sindh, Pakistan <br />
+          Tel: +92-244-930507, Fax: +92-244-930263 <br />
+          Website: www.pumhs.edu.pk
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 2nd Page -->
+  <!--  -->
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdn.rawgit.com/lindell/JsBarcode/master/dist/JsBarcode.all.min.js"></script>
+  <script type="text/javascript" src="./js/qrcode.js"></script>
+
+  <script type="text/javascript">
+
+    const paragraphs = document.querySelectorAll('body');
+    // http://localhost:5000
+    // http://121.52.155.34:5000
+    const IP_ADDRESS = "http://172.173.225.115:5000"
+
+    for (const paragraph of paragraphs) {
+      paragraph.addEventListener('mousedown', (event) => {
+        event.preventDefault();
+      });
+    }
+
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'I' && event.ctrlKey && event.shiftKey) {
+        event.preventDefault();
+      }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+
+    GET_VOUCHER_DATA()
+    // 
+    function GET_VOUCHER_DATA() {
+      const Vou = urlParams.get('Vou');
+      // 121.52.155.34
+      axios
+        .get(IP_ADDRESS + '/ADM_SESSION/getOne/' + Vou)
+        .then((res) => {
+          var a = res.data[0]
+          document.getElementById("YearSession").innerHTML = a.Year
+        })
+        .catch(function (error) {
+          console.log(error)
+          alert("Server error please check your internet connection")
+        })
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+sendFile({ folder: 'Domicile', file: DomecileImage })
+sendFile({ folder: 'Cnic', file: cnicImage })
+sendFile({ folder: 'Profile', file: proImage })
+sendFile({ folder: 'Matric', file: matricImage })
+sendFile({ folder: 'Inter', file: interImage })
+    
+
+<form method="POST" action="/profile-upload-single" enctype="multipart/form-data">
+<input
+    hidden
+    accept="image/*"
+    type="file"
+    onChange={(e) => setproImage(e.target.files[0])}
+/>
+
+</form>
+    
+    
+    const [proImage, setproImage] = useState('')
+    const [cnicImage, setcnicImage] = useState('')
+    const [matricImage, setmatricImage] = useState('')
+    const [interImage, setinterImage] = useState('')
+    const [DomecileImage, setDomecileImage] = useState('')
+
+    // 
+
+    const sendFile = (val) => {
+        const data = new FormData();
+        const file = val.file;
+        data.append("image", file);
+        axios({
+            method: 'post',
+            data: data,
+            config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        });
+    };
+
+
+    const upload = multer({
+        storage: multer.diskStorage({
+          destination: function (req, file, cb) {
+            console.log(req);
+            cb(null, "uploads/Inter");
+          },
+          filename: function (req, file, cb) {
+            console.log(req);
+      
+            cb(null, ".jpg");
+          },
+        }),
+      }).single("image");
+      
+      router.post("/upload", upload, (req, resp) => {
+        console.log(req);
+        resp.send(req.file);
+      });

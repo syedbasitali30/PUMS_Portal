@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+  <title></title>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      font: 12pt "Tahoma";
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 10mm;
+      margin: 10mm auto;
+      border: 1px #d3d3d3 solid;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .subpage {
+      padding: 1cm;
+      border: 5px red solid;
+      height: 257mm;
+      outline: 2cm #ffeaea solid;
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    @media print {
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        user-select: none;
+      }
+
+      .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+      }
+    }
+
+    html * {
+      color: #000;
+      /* font-family: "Calibri" !important; */
+      font-weight: bold;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+
+<body style="font-family: 'Book Antiqua'">
+  <div class="book">
+    <div class="page" style="padding: 10px">
+
+      <div style="border: 1px solid #000;height: 291mm;">
+
+        <div style="display: flex;width:100%;text-align: center;border-bottom: 1px solid #000;margin-bottom: -10px;">
+
+          <div style="width:8%;"></div>
+
+          <div style="width:15%;"><img src='/admission_print/logo.png' style='width: 100%;' />
+          </div>
+
+          <div style="width:69%;text-align: center">
+            <h1 style="letter-spacing: 8px;margin-bottom: 5px;">PEOPLE'S UNIVERSITY</h1>
+            <span style="letter-spacing: 3px;font-size: 14px;">OF MEDICAL & HEALTH SCIENCES FOR WOMEN
+              <br />
+              NAWABSHAH-SHAHEED BENAZIRABAD</span>
+          </div>
+
+          <div style="width:8%;"></div>
+
+        </div>
+
+        <div style="text-align: center;border-bottom: 1px solid #000;padding-bottom: 2px;">
+
+          <h3 style="margin-bottom: -0px;">APPLICATION FORM</h3>
+          <span style="font-style: italic;font-weight: bold;font-size: 14px;">for the Admission in MBBS UNDER OPEN
+            MERIT, DISABLE &
+            SELF-FINANCE(UDP)
+            Session 2022-23</span>
+
+        </div>
+
+        <div
+          style="text-align: center;justify-content: center;display: flex;border-bottom: 1px solid #000;padding: 10px;">
+
+          <div style="flex-direction: row;justify-content: space-between;display: flex;width: 80%;">
+            <div><span style="font-weight: normal;font-size: 14px;">Application No: <b>00306</b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">Domicile State: <b>SINDH</b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">District: <b>KHAIRPUR</b></span> </div>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              GENERAL INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;">Disabled Quota </th>
+                <th style="font-size: 12px;">Hafiz-e-Quran</th>
+                <th style="font-size: 12px;">General Merit</th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">No</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              BASIC INFORMATION
+            </div>
+
+            <div style="width: 100%;display: flex;">
+              <div style="width: 80%;">
+
+                <div
+                  style="flex-direction: row;justify-content: space-between;display: flex;border-bottom: 1px solid #000;padding-top: 10px;padding-bottom: 10px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Candidate Name: <b
+                        style="padding-left: 20px;">SYED BASIT ALI</b></span>
+                  </div>
+                </div>
+
+                <div
+                  style="flex-direction: row;display: flex;border-bottom: 1px solid #000;padding-top: 10px;padding-bottom: 10px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">CNIC No: <b
+                        style="padding-left: 10px;">03422650489</b></span>
+                  </div>
+                  <div style="margin-left: 80px;"></div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Contact No: <b
+                        style="padding-left: 10px;">03422650489</b></span>
+                  </div>
+                </div>
+
+                <div
+                  style="flex-direction: row;justify-content: space-between;display: flex;border-bottom: 1px solid #000;padding-top: 10px;padding-bottom: 10px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Father Name: <b
+                        style="padding-left: 10px;">SYED BASIT ALI</b></span>
+                  </div>
+                </div>
+
+              </div>
+              <div style="width: 20%;text-align: right;">
+                <img src='/admission_print/dummy_profile_2.jpg' style='width: 80%' />
+              </div>
+
+            </div>
+
+            <div style="width: 100%;display: flex;">
+              <div style="width: 100%;">
+
+                <div
+                  style="flex-direction: row;display: flex;border-bottom: 1px solid #000;padding-top: 0px;padding-bottom: 10px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">CNIC No: <b
+                        style="padding-left: 10px;">03422650489</b></span>
+                  </div>
+                  <div style="margin-left: 80px;"></div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Contact No: <b
+                        style="padding-left: 10px;">03422650489</b></span>
+                  </div>
+                </div>
+
+                <div
+                  style="flex-direction: row;justify-content: space-between;display: flex;border-bottom: 1px solid #000;padding-top: 10px;padding-bottom: 10px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Surname: <b
+                        style="padding-left: 10px;">ALI</b></span>
+                  </div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Religion: <b
+                        style="padding-left: 10px;">MUSLIM</b></span>
+                  </div>
+                  <div><span style="font-weight: normal;font-size: 16px;">Gender: <b
+                        style="padding-left: 10px;">FEMALE</b></span>
+                  </div>
+                </div>
+
+                <div style="padding-top: 20px;padding-bottom: 15px;">
+                  <div><span style="font-weight: normal;font-size: 16px;">Postal Address: <b
+                        style="padding-left: 10px;">Near Dargah Ram Poori Sarkar Saida Goth Khairp</b></span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              EDUCATIONAL INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;width: 2%;"> S.No </th>
+                <th style="font-size: 12px;width: 20%;"> Degree </th>
+                <th style="font-size: 12px;width: 20%;"> Board </th>
+                <th style="font-size: 12px;width: 5%;line-height: 16px;"> Passing Year</th>
+                <th style="font-size: 12px;width: 15%;"> Result Date</th>
+                <th style="font-size: 12px;"> Obtained </th>
+                <th style="font-size: 12px;"> Total </th>
+                <th style="font-size: 12px;"> Percentage </th>
+                <th style="font-size: 12px;"> Grade </th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">1.</td>
+                <td style="text-align: center;font-size: 12px;">No</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              PERCENTAGE INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px" colspan="4"> Calculate your percentages for merit (any error in calculation
+                  will debar your admission)
+                </th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">1.</td>
+                <td style="text-align: center;font-size: 12px;">No</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              EMERGENCY INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;">Disabled Quota </th>
+                <th style="font-size: 12px;">Hafiz-e-Quran</th>
+                <th style="font-size: 12px;">General Merit</th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">No</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd Page -->
+
+    <div class="page" style="padding: 10px">
+      <div style="border: 1px solid #000;height: 291mm;">
+
+
+        <div style="display: flex;width:100%;text-align: center;border-bottom: 1px solid #000;margin-bottom: 0px;">
+
+          <div style="width:8%;"></div>
+
+          <div style="width:15%;"><img src='/admission_print/logo.png' style='width: 100%;' />
+          </div>
+
+          <div style="width:69%;text-align: center">
+            <h1 style="letter-spacing: 8px;margin-bottom: 5px;">PEOPLE'S UNIVERSITY</h1>
+            <span style="letter-spacing: 3px;font-size: 14px;">OF MEDICAL & HEALTH SCIENCES FOR WOMEN
+              <br />
+              NAWABSHAH-SHAHEED BENAZIRABAD</span>
+          </div>
+
+          <div style="width:8%;"></div>
+
+        </div>
+
+        <div
+          style="text-align: center;justify-content: center;display: flex;border-bottom: 1px solid #000;padding: 10px;">
+
+          <div style="flex-direction: row;justify-content: space-between;display: flex;width: 80%;">
+            <div><span style="font-weight: normal;font-size: 14px;">Application No: <b>00306</b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">Domicile State: <b>SINDH</b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">District: <b>KHAIRPUR</b></span> </div>
+          </div>
+        </div>
+
+
+        <div style="border-bottom: 1px solid #000;">
+          <div style="margin-left: 35px;margin-right: 34px;margin-bottom: 8px;">
+            <div
+              style="background-color: #a9a9a9;color: white;text-align: center;padding: 5px;margin-top: 5px;margin-bottom: 5px;border-radius: 2px;font-size: 14px;">
+              CHALLAN INFORMATION</div>
+            <table style="width:100%">
+              <tr style="background-color: #d3d3d3;line-height: 30px;">
+                <th style="font-size: 12px;">Disabled Quota </th>
+                <th style="font-size: 12px;">Hafiz-e-Quran</th>
+                <th style="font-size: 12px;">General Merit</th>
+              </tr>
+              <tr style="line-height: 30px;">
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+                <td style="text-align: center;font-size: 12px;">No</td>
+                <td style="text-align: center;font-size: 12px;">Yes</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div style="margin: 20px;margin-top: 100px">
+          <div style="display: flex;justify-content: space-between;">
+            <div style="text-align: center;">
+              <div>______________________</div>
+              <div style="font-size: 14px;font-weight: normal">Candidate's Signature</div>
+              <div style="font-size: 14px;">Tayaba Bibi</div>
+              <div style="font-size: 14px;font-weight: normal">4520301984414</div>
+            </div>
+
+            <div style="text-align: center;">
+              <div>______________________</div>
+              <div style="font-size: 14px;font-weight: normal">Candidate's Signature</div>
+              <div style="font-size: 14px;font-weight: normal">Tayaba Bibi</div>
+              <div style="font-size: 14px;font-weight: normal">4520301984414</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="  display: flex;
+        height: 55%;margin: 10px;">
+          <div style="  display: inline-block;
+          align-self: flex-end;font-style: italic;margin-left: 20px;">Dated : 03 December 2023</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3rd Page -->
+
+    <div class="page" style="padding: 10px">
+      <div style="border: 1px solid #000;height: 291mm;">
+
+
+        <div style="display: flex;width:100%;text-align: center;border-bottom: 1px solid #000;margin-bottom: 0px;">
+
+          <div style="width:8%;"></div>
+
+          <div style="width:15%;"><img src='/admission_print/logo.png' style='width: 100%;' />
+          </div>
+
+          <div style="width:69%;text-align: center">
+            <h1 style="letter-spacing: 8px;margin-bottom: 5px;">PEOPLE'S UNIVERSITY</h1>
+            <span style="letter-spacing: 3px;font-size: 14px;">OF MEDICAL & HEALTH SCIENCES FOR WOMEN
+              <br />
+              NAWABSHAH-SHAHEED BENAZIRABAD</span>
+          </div>
+
+          <div style="width:8%;"></div>
+
+        </div>
+
+        <div
+          style="text-align: center;justify-content: center;display: flex;border-bottom: 1px solid #000;padding: 10px;">
+          <div style="flex-direction: row;justify-content: space-between;display: flex;width: 80%;">
+            <div><span style="font-weight: normal;font-size: 14px;">Application No: <b>00306</b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">Domicile State: <b>SINDH</b></span></div>
+            <div><span style="font-weight: normal;font-size: 14px;">District: <b>KHAIRPUR</b></span> </div>
+          </div>
+        </div>
+
+
+        <div style="padding: 10px;border-bottom: 1px solid #000">
+          <u style="font-size: 14px;font-style: italic;font-weight: bold;">Note:</u>
+          <div style="font-size: 14px;font-style: italic;font-weight: normal;padding-top: 5px;line-height: 20px;">(1)
+            Any candidate who
+            want to apply
+            on self-finance
+            category
+            (UDP) shall have to submit photocopy of pay
+            order / demand draft of
+            <b> Rs. 616,000/- (Rupees six hundred & sixteen thousand only) </b> in the favor of <b> "VICE CHANCELLOR,
+              PUMHSW"</b>
+            Nawabshah
+            (Shaheed Benazirabad).
+          </div>
+
+          <div style="font-size: 14px;font-style: italic;font-weight: normal;padding-top: 5px;line-height: 20px;"> (2)
+            Attach the photocopy of required documents, shown in check list only with print of application form.
+          </div>
+        </div>
+
+        <div style="border-bottom: 1px solid #000; padding: 20px;font-size: 20px;text-align: center;">
+          DOCUMENTS CHECK LIST
+        </div>
+
+        <div style="width:100%;margin: 2px;">
+
+          <table style="width: 99.5%;">
+
+            <tr style="line-height: 30px;">
+              <th style="font-size: 12px;width: 10%;">1.</th>
+              <th style="font-size: 11px;width: 80%;text-align: left;padding-left: 5px;">Copy of
+                MDCAT Roll Number Slip
+              </th>
+              <th style="font-size: 12px;width: 10%;"><input type="checkbox" /></th>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">2.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Copy of MDCAT Result
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">3.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Copy of MDCAT Result
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">4.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Printed Application
+                Form
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">5.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Matriculation Certificate (SSC) or O-Level Equivalence Certificate
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">6.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Matriculation Mark Certificate or O-Level Transcript Certificate
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">7.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Intermediate Certificate (HSC-Pre Medical) or A-Level Equivalence Certificate
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">8.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Intermediate Mark Certificate or A-Level Transcript Certificate
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">9.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Hafiz-e-Quran Certificate (if applicable)
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">10.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Disability Certificate from Sindh Social Welfare Department / Civil Services Hospital (if applicable)
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">11.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                candidate's Domicile
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">12.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                candidate's
+                Permanent Residence Certificate (PRC-Form C)
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">13.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Father's Domicile
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">14.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Mother's Domicile and Father's Death Certificate from NADRA if Father is not Alive
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">15.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Mother's Domicile and Divorce Certificate if Parents are Divorced
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">16.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                National Identity Card or B-Form (if candidate is below age of 18 years)
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">17.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Attested copy of
+                Father's National Identity Card
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">18.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;">Four passport size
+                photographs of the candidate with his/her name duly written on the back side of the photographs
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+            <tr style="line-height: 30px;">
+              <td style="text-align: center;font-size: 12px;">19.</td>
+              <td style="text-align: center;font-size: 11px;text-align: left;padding-left: 5px;line-height: 20px;">
+                Candidate applying
+                under category of overseas Pakistani should submit proof of educational certificates of candidate from
+                abroad and
+                her father / mother working outside Pakistan.
+              </td>
+              <td style="text-align: center;font-size: 12px;"><input type="checkbox" /></td>
+            </tr>
+
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+    <!--  -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+
+    <script type="text/javascript">
+
+      const paragraphs = document.querySelectorAll('body');
+
+      for (const paragraph of paragraphs) {
+        paragraph.addEventListener('mousedown', (event) => {
+          event.preventDefault();
+        });
+      }
+
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'I' && event.ctrlKey && event.shiftKey) {
+          event.preventDefault();
+        }
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+
+
+      GET_VOUCHER_DATA()
+      // 
+      function GET_VOUCHER_DATA() {
+        const Vou = urlParams.get('Vou');
+        // 121.52.155.34
+        axios
+          .get('http://121.52.155.34:5000/ADM_SESSION/getOne/' + Vou)
+          .then((res) => {
+            var a = res.data[0]
+            GET_USER_DATA(a)
+          })
+          .catch(function (error) {
+            console.log(error)
+            alert("error")
+          })
+      }
+
+      function GET_USER_DATA(a) {
+        const Info = urlParams.get('Info');
+        axios
+          .get('http://121.52.155.34:5000/ADM_BasicInfo/getOne/' + Info)
+          .then((res) => {
+            var b = res.data[0]
+            // voucherJS(a, b)
+          })
+          .catch(function (error) {
+            console.log(error)
+            alert("error")
+          })
+      }
+    </script>
+</body>
+
+</html>

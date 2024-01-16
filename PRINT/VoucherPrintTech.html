@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+  <title></title>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+      font: 12pt "Tahoma";
+    }
+
+    * {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+
+    .page {
+      width: 297mm;
+      min-height: 210mm;
+      padding: 10mm;
+      margin: 10mm auto;
+      border: 1px #d3d3d3 solid;
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .subpage {
+      padding: 1cm;
+      border: 5px red solid;
+      height: 257mm;
+      outline: 2cm #ffeaea solid;
+    }
+
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    @media print {
+
+      html,
+      body {
+        width: 297mm;
+        height: 210mm;
+        user-select: none;
+      }
+
+      .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+      }
+    }
+
+    html * {
+      color: #000;
+      font-family: "Calibri" !important;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body style="font-family: 'Book Antiqua'">
+  <div class="book">
+    <div class="page" style="padding: 10px">
+      <div id="DV_voucher"></div>
+    </div>
+  </div>
+  <!--  -->
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
+
+  <script type="text/javascript">
+
+    const paragraphs = document.querySelectorAll('body');
+    // http://localhost:5000
+    // http://121.52.155.34:5000
+    const IP_ADDRESS = "http://172.173.225.115:5000"
+
+    for (const paragraph of paragraphs) {
+      paragraph.addEventListener('mousedown', (event) => {
+        event.preventDefault();
+      });
+    }
+
+    document.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'I' && event.ctrlKey && event.shiftKey) {
+        event.preventDefault();
+      }
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    var ChallanNo = ""
+    // 
+    GET_VOUCHER_DATA()
+    // GET_PROGRAM_CHOISE()
+    // 
+    function GET_VOUCHER_DATA() {
+      const Vou = urlParams.get('Vou');
+      // 121.52.155.34
+      axios
+        .get(IP_ADDRESS + '/ADM_SESSION/getOne/' + Vou)
+        .then((res) => {
+          var a = res.data[0]
+          GET_PROGRAM_CHOISE(a)
+        })
+        .catch(function (error) {
+          console.log(error)
+          alert("error")
+        })
+    }
+
+    function GET_PROGRAM_CHOISE(a) {
+      const Vou = urlParams.get('Vou');
+      const Info = urlParams.get('Info');
+
+      const dataToSend = { RegID: Info, SesID: Vou }
+      axios
+        .post(IP_ADDRESS + '/ADM_ProgramApplied/getProgram_Choice', dataToSend)
+        .then((res) => {
+          const r = res.data
+          ChallanNo = r.APL_ID
+
+          GET_USER_DATA(a, r.APL_ID)
+
+          document.title = "PUMHS ADMISSION | VOUCHER PRINT | " + r.APL_ID;
+        })
+        .catch(function (error) {
+          console.log(error)
+          ChallanNo = ""
+        })
+    }
+
+
+    function GET_USER_DATA(a, APL_ID) {
+      const Info = urlParams.get('Info');
+      axios
+        .get(IP_ADDRESS + '/ADM_BasicInfo/getOne/' + Info)
+        .then((res) => {
+          var b = res.data[0]
+          voucherJS(a, b, APL_ID)
+        })
+        .catch(function (error) {
+          console.log(error)
+          alert("error")
+        })
+    }
+
+    function voucherJS(Ddata, Udata, APL_ID) {
+
+      const arr = [
+        { title: "BANK'S COPY", Img: "/admission-print/profileTech.png", APL_ID: APL_ID },
+        { title: "ACCOUNT'S COPY", Img: "/admission-print/profileTech.png", APL_ID: APL_ID },
+        { title: "ADMISSION COPY", Img: IP_ADDRESS + "/uploads/ADM_Profile/" + Udata.CNIC + ".jpg", APL_ID: APL_ID },
+        { title: "STUDENTS COPY", Img: IP_ADDRESS + "/uploads/ADM_Profile/" + Udata.CNIC + ".jpg", APL_ID: APL_ID }
+      ]
+
+      var vDate = moment(new Date()).format("DD/MM/YYYY");
+      let htmlContent = "";
+
+      for (let i = 0; i < arr.length; i++) {
+        htmlContent += `<div style='width:24%; border-color:#c4c4c4;border-style:solid;border-width:1px;padding:3px;height:200mm'>
+
+    <div><h5 id='dvBG_Challan' style="text-align:center;background-color:#a9a9a9;color:white;padding:5px;margin-top:0px">THIS CHALLAN IS VALID UPTO ${moment(
+          Ddata.End
+        )
+            .format("DD/MM/YYYY")}</h5></div>
+
+    <div style="display:flex;justify-content: space-between">
+      <div style="text-align:left;width:25%"><img src='/admission-print/logo.png' style='width: 100%;margin-top:-15px'/></div>
+      <div style="text-align:center;width:50%;padding-top:8px">${arr[i].title}</div>
+      <div style="text-align:right;width:25%"><img src='/admission-print/HBL-logo.jpg' style='width: 100%;margin-top:-3px'/></div>
+    </div>
+
+    <div style="text-align:center">
+    <span style="font-size:10px;">Please receive and credit to PUMHSW University Entry Test & Processing Fees of the Admission in BS-ICT, BS-AT, BS-CVT, BS-MLT Session ${Ddata.Year}</span>
+    </div>
+
+    <div><h5 style="text-align:center;background-color:#a9a9a9;color:white;padding:5px;margin:5px;border-radius:5px">PUMHS ONLINE STUDENT RECEIPTS ACCOUNT NO: 1439-79014003-03</h5></div>
+
+    <div style="display:flex;justify-content: space-between;margin-top:10px">
+      <div style="font-size:12px;" >Challan No: ${arr[i].APL_ID}</div>
+      <div style="font-size:12px;">Date: ${moment().format("DD/MM/YYYY")}</div>
+    </div>
+
+    <div><h5 style="text-align:center;background-color:#a9a9a9;color:white;padding:5px;margin-top:10px">ADMISSION SESSION ${Ddata.Year}</h5></div>
+
+    <table style="border-collapse:collapse;width:100%;margin-top:-15px">
+
+      <tr style="border-bottom: 0px solid #000;line-height: 20px;">
+        <td style="font-style:normal;font-size:12px">Name</td>
+        <td style="font-size:12px">${Udata.CANDIDATE_NAME}</td>
+      </tr>
+
+      <tr style="border-bottom: 0px solid #000;line-height: 20px;">
+        <td style="font-style:normal;font-size:12px">Father Name</td>
+        <td style="font-size:12px">${Udata.FName}</td>
+      </tr>   
+      
+      <tr style="border-bottom: 0px solid #000;line-height: 20px;">
+        <td style="font-style:normal;font-size:12px">CNIC</td>
+        <td style="font-size:12px">${Udata.CNIC}</td>
+      </tr>  
+    
+      <tr style="border-bottom: 0px solid #000;line-height: 20px;">
+        <td style="font-style:normal;font-size:12px">Contact No</td>
+        <td style="font-size:12px">${Udata.CandidateContact}</td>
+      </tr> 
+    </table>
+
+    <table style="border-collapse:collapse;width:100%;margin-top:10px;border-top: 2px solid #000;">
+      <tr style="border-bottom: 1px solid #000;">
+        <th style="width: 70%;font-style:normal;font-size:12px">Purpose of Payment</th>
+        <th style="width: 30%;font-style:normal;font-size:12px;;border-left: 1px solid #000;">Amount</th>
+      </tr>
+
+      <tr style="border-bottom: 1px solid #000;">
+        <td style="font-style:normal;font-size:14px">Entry Test & Admission Processing Fees for Session ${Ddata.Year} </td>
+        <td style="font-size:12px;text-align:center;border-left: 1px solid #000;">Rs. ${Ddata.Fees}</td>
+      </tr>
+
+      <tfoot>
+        <tr style="border-bottom: 1px solid #000;">
+          <th style="font-size:14px;font:weight:bold;text-align:right">Total</th>
+          <th style="font-style:normal;font-size:12px;border-left: 1px solid #000;">Rs. ${Ddata.Fees}</th>
+        </tr>
+      </tfoot>
+    </table>
+
+  <div style="font-style:normal;font-size:14px;text-align:center;margin-top:10px;margin-bottom:10px;">In Words (${Ddata.FeeWords})</div>
+
+  <div style="border-bottom: 4px double #000"></div>
+
+
+  <div style="display:flex;justify-content: space-between;margin-top:50px">
+    <div style="text-align:center">
+        <div style="font-style:normal;font-size:12px">__________________</div>
+        <div style="font-style:normal;font-size:12px">Candidate Signature</div>
+    </div>
+
+    <div style="text-align:center">
+        <div style="font-style:normal;font-size:12px">____________________</div>
+        <div style="font-style:normal;font-size:12px">Bank Officer Signature</div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content: space-between;margin-top:30px">
+    <div style="width:40%;border-width:1px;border-style:solid"><img src='${arr[i].Img}' style='width: 100%;height:125px;background-size: contain;'/></div>
+    <div style="font-style:normal;font-size:12px;width:50%">NOTE: This paid amount (Rs. ${Ddata.Fees}) is non-transferable and non-refundable. In case of providing wrong Information on any stage will lead to cancellation of admission.</div>
+  </div>
+
+    </div>`;
+        // 
+      }
+
+      const mainHtmlString = `
+  <div style="display:flex;justify-content: space-between;">
+    ${htmlContent}
+  </div>
+`;
+
+      document.getElementById("DV_voucher").innerHTML = mainHtmlString;
+
+      // 
+      setTimeout(() => {
+        window.print();
+
+      }, 4000);
+    }
+
+  </script>
+</body>
+
+</html>
